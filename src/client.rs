@@ -114,6 +114,8 @@ impl Client {
     }
 
     /// Retrieves the users's own timetable between two dates.
+    /// 
+    /// Takes the start date and end date between which you want to retrieve the timetable.
     pub fn own_timetable_between(
         &mut self,
         start_date: &Date,
@@ -128,6 +130,8 @@ impl Client {
     }
 
     /// Retrieves an element's timetable between now and a given date.
+    /// 
+    /// "ID" refers to the ID of the class or teacher whose timetable you want to retrieve.
     pub fn timetable_until(
         &mut self,
         id: &usize,
@@ -138,6 +142,8 @@ impl Client {
     }
 
     /// Retrieves an element's timetable for the current week.
+    /// 
+    /// Takes the ID of the element whose timetable you want to retrieve, and the type of the element whose timetable you want to retrieve.
     pub fn timetable_current_week(
         &mut self,
         id: &usize,
@@ -147,6 +153,8 @@ impl Client {
     }
 
     /// Retrieves an element's timetable for the week that a given date is in.
+    /// 
+    /// Takes the ID of the element whose timetable you want to retrieve, the type of the element whose timetable you want to retrieve, and the date whose week you want to retrieve the timetable for.
     pub fn timetable_for_week(
         &mut self,
         id: &usize,
@@ -162,6 +170,18 @@ impl Client {
     }
 
     /// Retrieves an element's own timetable between two dates.
+    /// 
+    /// "ID" refers to the ID of the class or teacher whose timetable you want to retrieve.
+    /// 
+    /// "Type" refers to the type of the element whose timetable you want to retrieve.
+    /// 
+    /// For example, if you want to retrieve the timetable of a class, you would pass `&ElementType::Class` as the type.
+    /// 
+    /// If you want to retrieve the timetable of a teacher, you would pass `&ElementType::Teacher` as the type.
+    /// 
+    /// start_date and end_date are the dates between which you want to retrieve the timetable.
+    /// 
+    /// These should be called with the [`Date`](crate::datetime::Date) struct.
     pub fn timetable_between(
         &mut self,
         id: &usize,
@@ -194,6 +214,11 @@ impl Client {
         self.rpc_client.request("getDepartments", ())
     }
 
+    /// Logs out of the current session.
+    /// 
+    /// Returns Ok(()) if the logout was successful.
+    /// 
+    /// Returns an error if the logout was unsuccessful.
     fn logout(&mut self) -> Result<(), Error> {
         self.rpc_client.request("logout", ())
     }

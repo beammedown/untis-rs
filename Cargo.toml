@@ -9,6 +9,7 @@ readme = "README.md"
 version = "1.0.0"
 authors = ["Leopold Luley <mail@leopoldluley.de>"]
 edition = "2021"
+publish = false
 
 [dependencies]
 chrono = "0.4"
